@@ -1,0 +1,93 @@
+name: customer-io
+description: customer-io integration
+
+classes:
+  user:
+    - name: customerId
+      type: string
+      filter_index: true
+
+endpoints:
+  anonymous-event:
+    description: Track an anonymous event
+    inputs:
+      properties:
+        event:
+          type: string
+          description: Event name
+        data:
+          type: object
+          description: Additional data sent over with the event
+  customer-event:
+    description: Track an customer event
+    inputs:
+      properties:
+        customerId:
+          type: string
+          description: Unique user id (optional)
+        email:
+          type: string
+          description: Customer email
+        event:
+          type: string
+          description: Event name
+        data:
+          type: object
+          description: Additional data sent over with the event
+  customer:
+    description: Add or update customer
+    inputs:
+      properties:
+        customerId:
+          type: string
+          description: Unique user id (optional)
+        email:
+          type: string
+          description: Additional data sent over with the event
+        attributes:
+          type: object
+          description: Custom attributes to define the customer
+  delete-customers:
+    description: Delete customer
+    inputs:
+      properties:
+        customerId:
+          type: string
+          description: Unique user id
+
+event_handlers:
+  events.anonymous-event:
+    file: anonymous-event.js
+    inputs:
+      properties:
+        name:
+          type: string
+          description: Event name
+        data:
+          type: object
+          description: Additional data sent over with the event
+  events.customer-event:
+    file: customer-event.js
+    description: Track an customer event
+    inputs:
+      properties:
+        customerId:
+          type: string
+          description: Unique user id (optional)
+        email:
+          type: string
+          description: Customer email
+        event:
+          type: string
+          description: Event name
+        data:
+          type: object
+          description: Additional data sent over with the event
+
+config:
+  SITE_ID:
+    description: customer.io siteId
+    required: true
+  API_KEY:
+    description: customer.io apiKey
+    required: true
