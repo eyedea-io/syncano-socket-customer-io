@@ -3,9 +3,9 @@ import * as crypto from 'crypto'
 import CustomerIo from 'customerio-node'
 
 interface Args {
-  customerId?: string
   email: string
-  attributes: object
+  customerId?: string
+  attributes?: object
 }
 
 class Endpoint extends S.Endpoint {

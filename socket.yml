@@ -11,6 +11,9 @@ endpoints:
   anonymous-event:
     description: Track an anonymous event
     inputs:
+      required:
+        - event
+        - data
       properties:
         event:
           type: string
@@ -21,10 +24,12 @@ endpoints:
   customer-event:
     description: Track an customer event
     inputs:
+      required:
+        - event
       properties:
         customerId:
           type: string
-          description: Unique user id (optional)
+          description: Unique user id
         email:
           type: string
           description: Customer email
@@ -37,17 +42,21 @@ endpoints:
   customer:
     description: Add or update customer
     inputs:
+      required:
+        - email
       properties:
         customerId:
           type: string
-          description: Unique user id (optional)
+          description: Unique user id
         email:
           type: string
-          description: Additional data sent over with the event
+          description: Customer email
         attributes:
           type: object
           description: Custom attributes to define the customer
   delete-customers:
+    required:
+      - customerId
     description: Delete customer
     inputs:
       properties:
@@ -73,7 +82,7 @@ event_handlers:
       properties:
         customerId:
           type: string
-          description: Unique user id (optional)
+          description: Unique user id
         email:
           type: string
           description: Customer email
