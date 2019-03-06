@@ -3,7 +3,7 @@ import CustomerIo from 'customerio-node'
 
 interface Args {
   customerId?: string
-  email: string
+  email?: string
   event: string
   data: Object
 }
