@@ -10,6 +10,7 @@ classes:
 endpoints:
   anonymous-event:
     description: Track an anonymous event
+    private: true
     inputs:
       required:
         - event
@@ -23,6 +24,7 @@ endpoints:
           description: Additional data sent over with the event
   customer-event:
     description: Track an customer event
+    private: true
     inputs:
       required:
         - event
@@ -41,6 +43,7 @@ endpoints:
           description: Additional data sent over with the event
   customer:
     description: Add or update customer
+    private: true
     inputs:
       required:
         - email
@@ -55,9 +58,10 @@ endpoints:
           type: object
           description: Custom attributes to define the customer
   delete-customers:
+    description: Delete customer
+    private: true
     required:
       - customerId
-    description: Delete customer
     inputs:
       properties:
         customerId:
@@ -67,6 +71,7 @@ endpoints:
 event_handlers:
   events.anonymous-event:
     file: anonymous-event.js
+    private: true
     inputs:
       properties:
         name:
@@ -77,6 +82,7 @@ event_handlers:
           description: Additional data sent over with the event
   events.customer-event:
     file: customer-event.js
+    private: true
     description: Track an customer event
     inputs:
       properties:
