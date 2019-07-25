@@ -10,7 +10,6 @@ class Endpoint extends S.Endpoint {
       try {
         const allUsers = await users.list()
         for (const user of allUsers) {
-          console.log(user)
           if (user.username && !user.customerId) {
             users
               .where('username', user.username)
