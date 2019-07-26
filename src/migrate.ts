@@ -8,14 +8,14 @@ class Endpoint extends S.Endpoint {
   async run({response, users}: S.Core, {args, config}: S.Context<Args>) {
     if (args.migrationKey === config.CUSTOMERIO_MIGRATION_KEY) {
       try {
-        const allUsers = await users.list()
+        const allUsers = await users.whereNull('customerId').list()
+        const updateList = []
         for (const user of allUsers) {
-          if (user.username && !user.customerId) {
-            users
-              .where('username', user.username)
-              .update({customerId: user.username})
-          }
+            updateList.push([
+              user.id, {customerId: user.username},
+            ])
         }
+        users.update(updateList)
         response.json({message: 'update successfull'})
       } catch (e) {
         response.json({message: e})

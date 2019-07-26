@@ -55,7 +55,7 @@ Install package in your project:
 ```sh
 cd my_project
 npm install @syncano/cli --save-dev
-npm install @eyedea-sockets/<name> --save
+npm install @eyedea-sockets/syncano-socket-customer-io --save
 npx s deploy
 ```
 

@@ -76,6 +76,7 @@ endpoints:
         migrationKey:
           type: string
           description: Migration key to authorise database operation (required)
+          minLength: 4
 
 event_handlers:
   events.anonymous-event:
