@@ -10,32 +10,42 @@
 Main Socket features:
 
 > **customer-io/anonymous-event** — Send anonymous event
-  * **Params**
-    * **event**: string - Event name (required)
-    * **data**: object - Additional data sent over with the event (required)
+
+- **Params**
+  - **event**: string - Event name (required)
+  - **data**: object - Additional data sent over with the event (required)
 
 > **customer-io/customer-event** — Send customer event
-  * **Params**
-    * **customerId**: string - Unique user id 
-    * **email**: string - Customer email
-    * **event**: string - Event name (required)
-    * **data**: object - Additional data sent over with the event
+
+- **Params**
+  - **customerId**: string - Unique user id
+  - **email**: string - Customer email
+  - **event**: string - Event name (required)
+  - **data**: object - Additional data sent over with the event
 
 > **customer-io/customer** — add/update customer
-  * **Params**
-    * **customerId**: string - Unique user id 
-    * **email**: string - Customer email (required)
-    * **attributes**: object - description: Custom attributes to define the customer
 
-> **customer-io/delete-customers** — Remove customer 
-  * **Params**
-    * **customerId**: string - Unique user id (required)
+- **Params**
+  - **customerId**: string - Unique user id
+  - **email**: string - Customer email (required)
+  - **attributes**: object - description: Custom attributes to define the customer
 
+> **customer-io/delete-customers** — Remove customer
 
-Confing: 
+- **Params**
+  - **customerId**: string - Unique user id (required)
+
+> **customer-io/migrate** — Remove customer
+
+- **Params**
+  - **migrationKey**: string - Migration key to authorise database operation (required)
+
+Config:
+
 ```
   SITE_ID - customer.io siteId
   API_KEY = customer.io apiKey
+  CUSTOMERIO_MIGRATION_KEY = your passphrase migration key to migrate usernames to customer.io id database field
 ```
 
 ## Getting Started
@@ -45,7 +55,7 @@ Install package in your project:
 ```sh
 cd my_project
 npm install @syncano/cli --save-dev
-npm i @eyedea-sockets/syncano-socket-customer-io --save
+npm install @eyedea-sockets/syncano-socket-customer-io --save
 npx s deploy
 ```
 
@@ -64,6 +74,6 @@ const params = {
   }
 }
 
-const response = await s.post('customer-io/anonymous-event', params)
+const suggestions = await s.get('customer-io/anonymous-event', params)
 
 ```

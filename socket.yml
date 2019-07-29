@@ -67,6 +67,16 @@ endpoints:
         customerId:
           type: string
           description: Unique user id
+  migrate:
+    description: username to customerId migration
+    required:
+      - migrationKey
+    inputs:
+      properties:
+        migrationKey:
+          type: string
+          description: Migration key to authorise database operation (required)
+          minLength: 4
 
 event_handlers:
   events.anonymous-event:
@@ -105,4 +115,7 @@ config:
     required: true
   API_KEY:
     description: customer.io apiKey
+    required: true
+  CUSTOMERIO_MIGRATION_KEY:
+    description: Migration key to authorise database operation
     required: true
