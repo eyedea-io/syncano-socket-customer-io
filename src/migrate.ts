@@ -11,9 +11,9 @@ class Endpoint extends S.Endpoint {
         const allUsers = await users.whereNull('customerId').list()
         const updateList = []
         for (const user of allUsers) {
-            updateList.push([
-              user.id, {customerId: user.username},
-            ])
+          updateList.push([
+            user.id, {customerId: user.username},
+          ])
         }
         users.update(updateList)
         response.json({message: 'update successfull'})
