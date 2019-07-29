@@ -1,6 +1,6 @@
 {
   "name": "@eyedea-sockets/syncano-socket-customer-io",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Description",
   "repository": "https://github.com/eyedea-io/syncano-socket-customer-io.git",
   "public": true,
