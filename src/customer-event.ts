@@ -22,10 +22,18 @@ class Endpoint extends S.Endpoint {
         .fields('customerId')
         .first()
 
-      await cio.track(customerId || user.customerId, {
-        name: event,
-        data,
-      })
+      if (customerId || user) {
+        await cio.track(customerId || user.customerId, {
+          name: event,
+          data,
+        })
+      } else {
+        await cio.trackAnonymous({
+          name: event,
+          data,
+        })
+      }
+
 
       response.json({message: 'Message has been send.'})
     } catch (err) {
